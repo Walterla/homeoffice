@@ -1,0 +1,14 @@
+#summary The HomeOffice project is being built in modules just like AppFuse.
+
+= Introduction =
+
+The goal is to create a useable web application that is structured like AppFuse and uses
+Maven to handle the software process.
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
