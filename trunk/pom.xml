@@ -123,8 +123,8 @@
 
     <modules>
         <module>data</module>
-<!--        <module>service</module>
-            <module>web</module> -->
+        <module>service</module>
+<!--            <module>web</module> -->
     </modules>
 
     <repositories>
