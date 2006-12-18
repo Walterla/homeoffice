@@ -1,0 +1,71 @@
+package org.dlw.service.impl;
+
+import org.dlw.dao.UniversalDao;
+import org.dlw.model.User;
+import org.jmock.Mock;
+import org.springframework.orm.ObjectRetrievalFailureException;
+
+/**
+ * This class tests the generic Manager and BaseManager implementation.
+ */
+public class UniversalManagerTest extends BaseManagerTestCase {
+    protected BaseManager manager = new BaseManager();
+    protected Mock dao;
+    
+    protected void setUp() throws Exception {
+        super.setUp();
+        dao = new Mock(UniversalDao.class);
+        manager.setDao((UniversalDao) dao.proxy());
+    }
+    
+    protected void tearDown() throws Exception {
+        manager = null;
+        dao = null;
+    }
+
+    /**
+     * Simple test to verify BaseDao works.
+     */
+    public void testCRUD() {
+        User user = new User();
+        // set required fields
+        user.setUsername("foo");
+
+        // create
+        // set expectations
+        dao.expects(once()).method("save").isVoid();
+        
+        manager.save(user);
+        dao.verify();
+        
+        // retrieve
+        dao.reset();
+        // expectations
+        dao.expects(once()).method("get").will(returnValue(user));
+        
+        user = (User) manager.get(User.class, user.getUsername());
+        dao.verify();
+        
+        // update
+        dao.reset();
+        dao.expects(once()).method("save").isVoid();
+        user.getAddress().setCountry("USA");
+        manager.save(user);
+        dao.verify();
+        
+        // delete
+        dao.reset();
+        // expectations
+        Exception ex = new ObjectRetrievalFailureException(User.class, "foo");
+        dao.expects(once()).method("remove").isVoid();            
+        dao.expects(once()).method("get").will(throwException(ex));
+        manager.remove(User.class, "foo");
+        try {
+            manager.get(User.class, "foo");
+            fail("User 'foo' found in database");
+        } catch (ObjectRetrievalFailureException e) {
+            assertNotNull(e.getMessage());
+        }
+        dao.verify();
+    }
+}
