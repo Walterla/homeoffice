@@ -121,14 +121,6 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>appfuse-snapshots</id>
-            <name>AppFuse Snapshot Repository</name>
-            <url>scpexe://static.appfuse.org//home/raibledemo/public_html/repository</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <modules>
         <module>data</module>
 <!--        <module>service</module>
