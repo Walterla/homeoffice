@@ -41,7 +41,7 @@
 <div style="margin-top: 50px">
 <s:action name="contact!list" id="action" namespace="default"/>
 
-<strong>Current folks:</strong>
+<strong>Current contacts:</strong>
 <ul class="glassList">
     <s:iterator value="#action.contacts">
         <li><s:a href="contact.html?id=%{id}"><s:property value="firstName"/> <s:property value="lastName"/></s:a></li>
