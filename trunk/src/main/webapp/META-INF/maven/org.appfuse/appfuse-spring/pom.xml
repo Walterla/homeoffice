@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.appfuse</groupId>
+        <artifactId>appfuse</artifactId>
+        <version>2.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>appfuse-spring</artifactId>
+    <packaging>war</packaging>
+    <name>AppFuse Spring MVC Module</name>
+
+    <scm>
+        <connection>scm:svn:https://appfuse.dev.java.net/svn/appfuse/trunk/web/spring</connection>
+        <developerConnection>scm:svn:https://appfuse.dev.java.net/svn/appfuse/trunk/web/spring</developerConnection>
+        <url>https://appfuse.dev.java.net/source/browse/appfuse/trunk/web/spring</url>
+    </scm>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/main/webapp</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>dbunit-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <driver>${jdbc.driverClassName}</driver>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
+                    <url>${jdbc.url}</url>
+                    <sourceData>${basedir}/src/test/resources/sample-data.xml</sourceData>
+                    <sourceDataFormat>xml</sourceDataFormat>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>clean-insert</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <!-- Runs before integration tests and jetty:run-war -->
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>clean-insert</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <configuration>
+                    <tasks>
+                        <taskdef resource="webtest_base_relaxed.taskdef">
+                            <classpath refid="maven.test.classpath"/>
+                        </taskdef>
+                        <mkdir dir="target/webtest-data"/>
+                        <!-- Delete old results file if it exists -->
+                        <delete file="target/webtest-data/web-tests-result.xml"/>
+                        <!-- This is so the default will be used if no test case is specified -->
+                        <property name="test" value="run-all-tests"/>
+                        <echo level="info">Testing '${project.build.finalName}' with locale '${user.language}'</echo>
+                        <ant antfile="src/test/resources/web-tests.xml" target="${test}">
+                            <property name="user.language" value="${user.language}"/>
+                            <property name="webapp.name" value="${project.build.finalName}"/>
+                            <property name="host" value="${cargo.host}"/>
+                            <property name="port" value="${cargo.port}"/>
+                        </ant>
+                    </tasks>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.canoo</groupId>
+                        <artifactId>webtest</artifactId>
+                        <version>${webtest.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>javax.xml</groupId>
+                                <artifactId>jsr173</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${javamail.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>${log4j.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>oro</groupId>
+                        <artifactId>oro</artifactId>
+                        <version>${oro.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.appfuse</groupId>
+                <artifactId>maven-warpath-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <extensions>true</extensions> 
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>add-classes</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+              <artifactId>maven-war-plugin</artifactId>
+              <executions>
+                  <execution>
+                      <id>skinny-war</id>
+                      <goals>
+                          <goal>war</goal>
+                      </goals>
+                      <phase>post-integration-test</phase>
+                      <inherited>false</inherited>
+                      <configuration>
+                          <warSourceExcludes>WEB-INF/lib/**</warSourceExcludes>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>appfuse-web-common</artifactId>
+            <version>${pom.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>appfuse-web-common</artifactId>
+            <version>${pom.version}</version>
+            <type>warpath</type>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons.fileupload.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag</artifactId>
+            <version>${displaytag.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp-wiser</artifactId>
+            <version>${wiser.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Dependencies with scope=provided aren't picked up from dependent JARs -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springmodules</groupId>
+            <artifactId>spring-modules-validation</artifactId>
+            <version>${springmodules.validation.version}</version>            
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.persistence</groupId>
+                    <artifactId>ejb</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.artifactId}</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>tomcat5x</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <wait>${cargo.wait}</wait>
+                            <container>
+                                <containerId>tomcat5x</containerId>
+                                <zipUrlInstaller>
+                                    <url>
+                                        http://apache.org/dist/tomcat/tomcat-5/v5.5.17/bin/apache-tomcat-5.5.17.zip
+                                    </url>
+                                    <installDir>${installDir}</installDir>
+                                </zipUrlInstaller>
+                            </container>
+                            <configuration>
+                                <home>${project.build.directory}/tomcat5x/container</home>
+                                <properties>
+                                    <cargo.hostname>${cargo.host}</cargo.hostname>
+                                    <cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>start-container</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop-container</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
+
