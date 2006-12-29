@@ -4,7 +4,10 @@
         <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
     </Displayers>
     <Menus>
-        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html"/>
+        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html">
+            <Item name="CRUDContacts" title="Contacts" page="/contact.html"/>
+            <Item name="CRUDBusinesses" title="Businesses" page="/business.html"/>
+        </Menu>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/editProfile.html" roles="admin,user"/>
         <Menu name="FileUpload" title="menu.selectFile" description="File Upload" width="100" page="/uploadFile!start.html" roles="admin,user"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="admin" width="120" page="/users.html">

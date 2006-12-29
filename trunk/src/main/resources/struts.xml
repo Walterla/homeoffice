@@ -118,5 +118,10 @@
             <result>/WEB-INF/pages/contact.jsp</result>
             <result name="form" type="redirect">contact.html</result>
         </action>
+        <action name="business" class="businessAction">
+            <result>/WEB-INF/pages/business.jsp</result>
+            <result name="form" type="redirect">business.html</result>
+        </action>
+
       </package>
 </struts>
