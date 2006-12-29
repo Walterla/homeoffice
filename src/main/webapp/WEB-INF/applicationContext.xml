@@ -11,6 +11,7 @@
             <list>
                 <value>org.dlw.model.Contact</value>
                 <value>org.dlw.model.Business</value>
+                <value>org.dlw.model.account.Account</value>
             </list>
         </property>
     </bean>
@@ -30,6 +31,13 @@
             </bean>
         </constructor-arg>
     </bean>
+    <bean id="accountManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
+                <constructor-arg value="org.dlw.model.account.Account"/>
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <!-- struts action registration -->
     <bean id="contactAction" class="org.dlw.action.ContactAction" scope="prototype">
@@ -38,5 +46,7 @@
     <bean id="businessAction" class="org.dlw.action.BusinessAction" scope="prototype">
         <property name="businessManager" ref="businessManager"/>
     </bean>
-
+    <bean id="accountAction" class="org.dlw.action.account.AccountAction" scope="prototype">
+        <property name="accountManager" ref="accountManager"/>
+    </bean>
 </beans>
