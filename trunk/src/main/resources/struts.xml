@@ -122,6 +122,10 @@
             <result>/WEB-INF/pages/business.jsp</result>
             <result name="form" type="redirect">business.html</result>
         </action>
+        <action name="account" class="accountAction">
+            <result>/WEB-INF/pages/account/account.jsp</result>
+            <result name="form" type="redirect">account.html</result>
+        </action>
 
       </package>
 </struts>

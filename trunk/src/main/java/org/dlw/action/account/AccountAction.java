@@ -1,8 +1,9 @@
-package org.dlw.action;
+package org.dlw.action.account;
 
-import org.dlw.model.Contact;
-import org.appfuse.service.GenericManager;
 import org.appfuse.webapp.action.BaseAction;
+import org.appfuse.service.GenericManager;
+import org.dlw.model.Business;
+import org.dlw.model.account.Account;
 
 import java.util.List;
 import java.text.MessageFormat;
@@ -16,55 +17,56 @@ import java.text.MessageFormat;
  *
  * @author David L Whitehurst
  */
-public class ContactAction extends BaseAction {
-    GenericManager<Contact, Long> manager;
-    Contact contact;
+public class AccountAction extends BaseAction {
+    GenericManager<Account, Long> manager;
+    Account account;
     Long id;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setContactManager(GenericManager<Contact, Long> genericManager) {
+    public void setAccountManager(GenericManager<Account, Long> genericManager) {
         this.manager = genericManager;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String execute() {
         if (id != null) {
-            contact = manager.get(id);
+            account = manager.get(id);
         }
         return "success";
     }
 
     public String save() {
-        manager.save(contact);
-        super.saveMessage("Contact updated successfully!");
+        manager.save(account);
+        super.saveMessage("Account updated successfully!");
         return "form";
     }
 
-    private List contacts;
+    private List accounts;
 
-    public List getContacts() {
-        return this.contacts;
+    public List getAccounts() {
+        return this.accounts;
     }
-    
+
     public String list() {
-        contacts = manager.getAll();
+        accounts = manager.getAll();
         return SUCCESS;
     }
 
     public String delete() {
-        manager.remove(contact.getId());
+        manager.remove(account.getId());
         saveMessage(MessageFormat.format("{0} removed successfully.",
-                contact.getFirstName() + ' ' + contact.getLastName()));
+                account.getAccountName()));
         return "form";
     }
 }
+
