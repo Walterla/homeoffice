@@ -27,13 +27,13 @@
       <value>Tomcat</value>
       <value>User</value>
       <value></value>
-      <value>Denver</value>
+      <value>Piedmont</value>
       <value>US</value>
-      <value>matt_raible@yahoo.com</value>
+      <value>dlwhitehurst@gmail.com</value>
       <value></value>
       <value>80210</value>
-      <value>CO</value>
-      <value>http://jakarta.apache.org/tomcat</value>
+      <value>OK</value>
+      <value>http://localhost:8080</value>
       <value><![CDATA[A male kitty.]]></value>
       <value>1</value>
       <value>1</value>
@@ -90,4 +90,19 @@
       <value>1</value>
     </row>
   </table>
+    <table name='contact'>
+      <column>id</column>
+      <column>firstname</column>
+      <column>lastname</column>
+      <row>
+        <value>1</value>
+        <value>David</value>
+        <value>Whitehurst</value>
+      </row>
+      <row>
+        <value>2</value>
+        <value>Kim</value>
+        <value>Whitehurst</value>
+      </row>
+    </table>
 </dataset>
