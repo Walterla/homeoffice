@@ -39,12 +39,17 @@
 </script>
 
 <div style="margin-top: 50px">
-<s:action name="contact!list" id="action" namespace="default"/>
+    <s:action name="contact!list" id="action" namespace="default"/>
+    <display:table name="action.contacts" id="row" cellspacing="0" cellpadding="0"
+        defaultsort="1" class="table" pagesize="50" requestURI="">
 
-<strong>Current contacts:</strong>
-<ul class="glassList">
-    <s:iterator value="#action.contacts">
-        <li><s:a href="contact.html?id=%{id}"><s:property value="firstName"/> <s:property value="lastName"/></s:a></li>
-    </s:iterator>
-</ul>
+        <%-- Table columns --%>
+        <display:column titleKey="contacts.fullName" sortable="true">
+            <s:a href="contact.html?id=${row.id}"><c:out value="${row.firstName} ${row.lastName}" escapeXml="true"/></s:a>
+        </display:column>
+
+        <display:setProperty name="paging.banner.item_name" value="contact" />
+        <display:setProperty name="paging.banner.items_name" value="contacts" />
+    </display:table>
 </div>
+
