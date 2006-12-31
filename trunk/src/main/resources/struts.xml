@@ -114,6 +114,8 @@
         </action>
         
         <!-- Add additional actions here -->
+        <action name="contacts" class="contactAction" method="list"/>
+            
         <action name="contact" class="contactAction">
             <result>/WEB-INF/pages/contact.jsp</result>
             <result name="form" type="redirect">contact.html</result>
