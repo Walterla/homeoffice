@@ -10,10 +10,44 @@
     <name>HomeOffice</name>
     <url>http://localhost:8080</url>
 
+    <description>
+        The HomeOffice application is an attempt to use AppFuse to create a working or
+        functional application that can be hosted in a wireless home and used by the
+        family to keep track of household data.
+    </description>
+
     <prerequisites>
         <maven>2.0.4</maven>
     </prerequisites>
-	
+
+    <scm>
+        <connection>scm:svn:https://homeoffice.googlecode.com/svn/trunk</connection>
+        <developerConnection>scm:svn:https://homeoffice.googlecode.com/svn/trunk</developerConnection>
+        <url>http://homeoffice.googlecode.com/svn/trunk</url>
+    </scm>
+
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/homeoffice/issues/list</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>dlwhitehurst</id>
+            <name>David Whitehurst</name>
+            <email>dlwhitehurst@gmail.com</email>
+            <timezone>-6</timezone>
+        </developer>
+    </developers>
+
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
