@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp" %>
 
-<title>Contact Example</title>
+<title>Contact Form Example</title>
 
 <p>Please use the form below to modify a contact's information.</p>
 
