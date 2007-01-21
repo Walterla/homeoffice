@@ -5,6 +5,7 @@
 <p>Select a contact to update or delete:</p>
 
 <div style="margin-top: 50px">
+    <s:action name="contact!list" id="action" namespace="default"/>
     <display:table name="action.contacts" id="row" cellspacing="0" cellpadding="0"
         defaultsort="1" class="table" pagesize="50" requestURI="">
 
