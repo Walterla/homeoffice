@@ -166,6 +166,7 @@
             </testResource>
             <testResource>
                 <directory>src/main/webapp</directory>
+                <filtering>true</filtering>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
@@ -277,7 +278,7 @@
         <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
         <jdbc.version>5.0.3</jdbc.version>
         <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:mysql://localhost/appfuse?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+        <jdbc.url><![CDATA[jdbc:mysql://localhost/homeoffice?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
         <jdbc.username>root</jdbc.username>
         <jdbc.password></jdbc.password>
     </properties>

@@ -5,5 +5,8 @@
     <session-factory>
         <mapping class="org.appfuse.model.User"/>
         <mapping class="org.appfuse.model.Role"/>
+        <mapping class="org.dlw.model.Contact"/>
+        <mapping class="org.dlw.model.Business"/>
+        <mapping class="org.dlw.model.account.Account"/>
     </session-factory>
 </hibernate-configuration>
