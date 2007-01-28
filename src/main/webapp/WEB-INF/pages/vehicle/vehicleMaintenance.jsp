@@ -18,7 +18,7 @@
 
     <s:textfield label="AlarmDate" name="vehicleMaintenance.alarmDate" id="alarmDate"
                  value="%{vehicleMaintenance.alarmDate}" required="true" cssClass="text medium"/>
-    <button id="alarmCal" type="button" class="button">...</button> 
+    <button id="alarmCal" type="button" class="button">...</button>
 
     <s:textfield label="StartDate" name="vehicleMaintenance.startDate" id="startDate"
                  value="%{vehicleMaintenance.startDate}" required="false" cssClass="text medium"/>
@@ -26,9 +26,10 @@
 
     <s:textfield label="EndDate" name="vehicleMaintenance.endDate" id="endDate"
                  value="%{vehicleMaintenance.endDate}" required="false" cssClass="text medium"/>
-    <button id="endCal" type="button" class="button">...</button> 
+    <button id="endCal" type="button" class="button">...</button>
 
-
+    <p></p>
+    <p></p>
 
     <li class="buttonBar left">
         <s:submit method="save" value="Save" cssClass="button"/>
@@ -39,24 +40,26 @@
 <script type="text/javascript">
     Form.focusFirstElement('vehicleMaintenance');
     Calendar.setup(
-    {
-        inputField  : "alarmDate",      // id of the input field
-        ifFormat    : "%m/%d/%Y",      // the date format
-        button      : "alarmCal"    // id of the button
-    }
+        {
+            inputField  : "alarmDate",      // id of the input field
+            ifFormat    : "%m/%d/%Y",      // the date format
+            button      : "alarmCal"    // id of the button
+        }
+            );
     Calendar.setup(
-    {
-        inputField  : "startDate",      // id of the input field
-        ifFormat    : "%m/%d/%Y",      // the date format
-        button      : "startCal"    // id of the button
-    }
+        {
+            inputField  : "startDate",      // id of the input field
+            ifFormat    : "%m/%d/%Y",      // the date format
+            button      : "startCal"    // id of the button
+        }
+            );
     Calendar.setup(
-    {
-        inputField  : "startDate",      // id of the input field
-        ifFormat    : "%m/%d/%Y",      // the date format
-        button      : "endCal"    // id of the button
-    }
-    );
+        {
+            inputField  : "endDate",      // id of the input field
+            ifFormat    : "%m/%d/%Y",      // the date format
+            button      : "endCal"    // id of the button
+        }
+            );
 </script>
 
 
