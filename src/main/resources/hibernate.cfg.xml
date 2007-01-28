@@ -8,5 +8,7 @@
         <mapping class="org.dlw.model.Contact"/>
         <mapping class="org.dlw.model.Business"/>
         <mapping class="org.dlw.model.account.Account"/>
+        <mapping class="org.dlw.model.vehicle.Vehicle"/>
+        <mapping class="org.dlw.model.vehicle.VehicleMaintenance"/>
     </session-factory>
 </hibernate-configuration>

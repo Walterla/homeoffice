@@ -38,6 +38,20 @@
             </bean>
         </constructor-arg>
     </bean>
+    <bean id="vehicleManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
+                <constructor-arg value="org.dlw.model.vehicle.Vehicle"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="vehicleMaintenanceManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
+                <constructor-arg value="org.dlw.model.vehicle.VehicleMaintenance"/>
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <!-- struts action registration -->
     <bean id="contactAction" class="org.dlw.action.ContactAction" scope="prototype">
@@ -48,5 +62,11 @@
     </bean>
     <bean id="accountAction" class="org.dlw.action.account.AccountAction" scope="prototype">
         <property name="accountManager" ref="accountManager"/>
+    </bean>
+    <bean id="vehicleAction" class="org.dlw.action.vehicle.VehicleAction" scope="prototype">
+        <property name="vehicleManager" ref="vehicleManager"/>
+    </bean>
+    <bean id="vehicleMaintenanceAction" class="org.dlw.action.vehicle.VehicleMaintenanceAction" scope="prototype">
+        <property name="vehicleMaintenanceManager" ref="vehicleMaintenanceManager"/>
     </bean>
 </beans>
