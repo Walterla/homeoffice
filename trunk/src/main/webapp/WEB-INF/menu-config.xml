@@ -8,6 +8,10 @@
             <Item name="CRUDContacts" title="Contacts" page="/contact.html"/>
             <Item name="CRUDBusinesses" title="Businesses" page="/business.html"/>
         </Menu>
+        <Menu name="VehicleMenu" title="VehicleMenu.title">
+            <Item name="CRUDVehicles" title="Vehicles" page="/vehicle.html"/>
+            <Item name="CRUDVehicleMaintenance" title="Maintenance" page="/vehicleMaintenance.html"/>
+        </Menu>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/editProfile.html" roles="admin,user"/>
         <Menu name="FileUpload" title="menu.selectFile" description="File Upload" width="100" page="/uploadFile!start.html" roles="admin,user"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="admin" width="120" page="/users.html">
