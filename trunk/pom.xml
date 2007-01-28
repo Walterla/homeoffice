@@ -153,6 +153,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.appfuse</groupId>
+                <artifactId>appfuse-maven-plugin</artifactId>
+		        <version>2.0-m3-SNAPSHOT</version>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -265,6 +270,8 @@
     </reporting>
 
     <properties>
+        <appfuse.base.package>org.dlw</appfuse.base.package>
+
         <dao.framework>hibernate</dao.framework>
         <web.framework>struts</web.framework>
         <appfuse.version>2.0-SNAPSHOT</appfuse.version>
