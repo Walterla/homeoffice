@@ -1,6 +1,12 @@
 <%@ include file="/common/taglibs.jsp" %>
-
-<title>Vehicle Maintenance Form Example</title>
+<head>
+    <title>Vehicle Maintenance Form Example</title>
+    <%-- Calendar Setup - put in decorator if needed in multiple pages --%>
+    <link  href="<c:url value='/styles/calendar.css'/>"  type="text/css"  rel="stylesheet"/>
+    <script type="text/javascript" src="<c:url value='/scripts/calendar.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/scripts/calendar-setup.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/scripts/lang/calendar-en.js'/>"></script>
+</head>
 
 <p>Please use the form below to modify a Vehicle Maintenance record.</p>
 
@@ -10,8 +16,9 @@
     <s:textfield label="Name" name="vehicleMaintenance.name"
                  value="%{vehicleMaintenance.name}" required="true" cssClass="text medium"/>
 
-    <s:textfield label="AlarmDate" name="vehicleMaintenance.alarmDate"
+    <s:textfield label="AlarmDate" name="vehicleMaintenance.alarmDate" id="alarmDate"
                  value="%{vehicleMaintenance.alarmDate}" required="true" cssClass="text medium"/>
+    <button id="alarmCal" type="button" class="button">...</button> 
 
     <s:textfield label="StartDate" name="vehicleMaintenance.startDate"
                  value="%{vehicleMaintenance.startDate}" required="false" cssClass="text medium"/>
@@ -28,8 +35,16 @@
 </s:form>
 
 <script type="text/javascript">
-    Form.focusFirstElement('contact');
+    Form.focusFirstElement('vehicleMaintenance');
+    Calendar.setup(
+    {
+        inputField  : "alarmDate",      // id of the input field
+        ifFormat    : "%m/%d/%Y",      // the date format
+        button      : "alarmCal"    // id of the button
+    }
+    );
 </script>
+
 
 <div style="margin-top: 50px">
     <s:action name="vehicleMaintenance!list" id="action" namespace="default"/>
