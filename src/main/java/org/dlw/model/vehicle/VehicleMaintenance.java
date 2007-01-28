@@ -2,10 +2,7 @@ package org.dlw.model.vehicle;
 
 import org.appfuse.model.BaseObject;
 
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +13,18 @@ import java.util.Date;
     Date alarmDate;
     Date startDate;
     Date endDate;
+
+    @ManyToOne
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    Vehicle vehicle;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

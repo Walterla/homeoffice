@@ -2,13 +2,12 @@ package org.dlw.model.vehicle;
 
 import org.appfuse.model.BaseObject;
 
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.ArrayList;
 
- @Entity
+@Entity
  public class Vehicle extends BaseObject implements Serializable {
     Long id;
     String name;    // e.g. David's Truck
@@ -16,6 +15,7 @@ import java.io.Serializable;
     String model;   // e.g. F-150
     String year;    // e.g. 1995
     String VIN;     // 1234ABC999-ZXYY (alphanumeric unique identifier)
+    List<VehicleMaintenance> vehicleMaintenances = new ArrayList<VehicleMaintenance>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,6 +65,16 @@ import java.io.Serializable;
 
     public void setVIN(String VIN) {
         this.VIN = VIN;
+    }
+
+    @OneToMany(mappedBy="vehicle")
+    @OrderBy("alarmDate")
+    public List<VehicleMaintenance> getVehicleMaintenances() {
+        return vehicleMaintenances;
+    }
+
+    public void setVehicleMaintenances(List<VehicleMaintenance> vehicleMaintenances) {
+        this.vehicleMaintenances = vehicleMaintenances;
     }
 
      /**
