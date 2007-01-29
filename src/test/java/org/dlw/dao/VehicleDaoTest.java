@@ -5,8 +5,6 @@ import org.dlw.dao.impl.VehicleDao;
 import org.dlw.model.vehicle.Vehicle;
 import org.dlw.model.vehicle.VehicleMaintenance;
 import org.springframework.orm.ObjectRetrievalFailureException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.util.List;
 
