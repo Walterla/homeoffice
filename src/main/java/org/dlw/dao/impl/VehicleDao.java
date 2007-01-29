@@ -28,7 +28,7 @@ public class VehicleDao extends HibernateDaoSupport implements ParentChildDao<Ve
      * @return a List of Vehicle objects
      */
     public List<Vehicle> getAll() {
-       return super.getHibernateTemplate().loadAll(this.getClass());
+       return super.getHibernateTemplate().loadAll(org.dlw.model.vehicle.Vehicle.class);
     }
 
     /**
@@ -47,17 +47,17 @@ public class VehicleDao extends HibernateDaoSupport implements ParentChildDao<Ve
      * @return the Vehicle by id
      */
     public Vehicle get(Long id) {
-        Vehicle vehicle = (Vehicle) super.getHibernateTemplate().get(this.getClass(), id);
+        Vehicle vehicle = (Vehicle) super.getHibernateTemplate().get(org.dlw.model.vehicle.Vehicle.class, id);
 
         if (vehicle == null) {
-            log.warn("Uh oh, '" + this.getClass() + "' object with id '" + id + "' not found...");
+            log.warn("Uh oh, '" + org.dlw.model.vehicle.Vehicle.class + "' object with id '" + id + "' not found...");
             throw new ObjectRetrievalFailureException(this.getClass(), id);
         }
 
         return vehicle;
 
     }
-
+                                           
     /**
      * Saves specified Vehicle
      * @param object

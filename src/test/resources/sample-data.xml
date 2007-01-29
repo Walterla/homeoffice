@@ -105,4 +105,30 @@
         <value>Whitehurst</value>
       </row>
     </table>
+    <table name='vehicle'>
+      <column>id</column>
+      <column>name</column>
+      <column>make</column>
+      <column>model</column>
+      <column>year</column>
+      <column>vin</column>
+
+      <row>
+        <value>1</value>
+        <value>David's Truck</value>
+        <value>Ford</value>
+        <value>F-150</value>
+        <value>1995</value>
+        <value>ABC123</value>
+      </row>
+        <row>
+          <value>2</value>
+          <value>Kim's Van</value>
+          <value>Dodge</value>
+          <value>Caravan</value>
+          <value>2003</value>
+          <value>ZZZ987</value>
+        </row>
+    </table>
+
 </dataset>
