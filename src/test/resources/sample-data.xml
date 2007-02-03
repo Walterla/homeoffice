@@ -130,5 +130,28 @@
           <value>ZZZ987</value>
         </row>
     </table>
-
+    <table name="vehiclemaintenance">
+        <column>id</column>
+        <column>name</column>
+        <column>alarmdate</column>
+        <column>startdate</column>
+        <column>enddate</column>
+        <column>vehicle_id</column>
+        <row>
+          <value>1</value>
+          <value>Oil Change</value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value>1</value>
+        </row>
+        <row>
+          <value>2</value>
+          <value>New Tires</value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value>1</value>
+        </row>
+    </table>
 </dataset>

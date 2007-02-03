@@ -1,8 +1,9 @@
 package org.dlw.action.vehicle;
 
 import org.appfuse.webapp.action.BaseAction;
-import org.appfuse.service.GenericManager;
 import org.dlw.model.vehicle.Vehicle;
+import org.dlw.dao.VehicleDao;
+import org.dlw.service.VehicleManager;
 
 import java.util.List;
 import java.text.MessageFormat;
@@ -17,17 +18,19 @@ import java.text.MessageFormat;
  * @author David L Whitehurst
  */
 public class VehicleAction extends BaseAction {
-    GenericManager<Vehicle, Long> manager;
+    private List vehicles;
+    private List vehicleMaintenances;
+
+    VehicleManager vehicleManager;
     Vehicle vehicle;
     Long id;
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setVehicleManager(GenericManager<Vehicle, Long> genericManager) {
-        this.manager = genericManager;
+    public void setVehicleManager(VehicleManager vehicleManager) {
+        this.vehicleManager = vehicleManager;
     }
 
     public Vehicle getVehicle() {
@@ -40,30 +43,38 @@ public class VehicleAction extends BaseAction {
 
     public String execute() {
         if (id != null) {
-            vehicle = manager.get(id);
+            vehicle = (Vehicle) vehicleManager.getVehicle(id);
         }
         return "success";
     }
 
     public String save() {
-        manager.save(vehicle);
+        vehicleManager.saveVehicle(vehicle);
         super.saveMessage("Vehicle updated successfully!");
         return "form";
     }
 
-    private List vehicles;
 
     public List getVehicles() {
         return this.vehicles;
     }
 
+    public List getVehicleMaintenances() {
+        return this.vehicleMaintenances;
+    }
+
     public String list() {
-        vehicles = manager.getAll();
+        vehicles = vehicleManager.getVehicles();
+        return SUCCESS;
+    }
+
+    public String listChildren() {
+        vehicleMaintenances = vehicleManager.getVehicleMaintenances(vehicle.getId());
         return SUCCESS;
     }
 
     public String delete() {
-        manager.remove(vehicle.getId());
+        vehicleManager.removeVehicle(vehicle.getId());
         saveMessage(MessageFormat.format("{0} removed successfully.",
                 vehicle.getYear() + ' ' + vehicle.getMake() + ' ' + vehicle.getModel()));
         return "form";

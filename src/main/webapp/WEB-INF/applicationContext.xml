@@ -24,6 +24,19 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <!-- Transaction template for Managers, from:
+         http://blog.exis.com/colin/archives/2004/07/31/concise-transaction-definitions-spring-11/ -->
+    <bean id="txProxyTemplate" abstract="true"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="remove*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
 
 
     <!-- register HibernateExtensionPostProcessor -->
@@ -61,23 +74,11 @@
             </bean>
         </constructor-arg>
     </bean>
-    <!--
-    <bean id="vehicleManager" class="org.appfuse.service.impl.GenericManagerImpl">
-        <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
-                <constructor-arg value="org.dlw.model.vehicle.Vehicle"/>
-            </bean>
-        </constructor-arg>
+    <bean id="vehicleManager" class="org.dlw.service.impl.VehicleManagerImpl">
+        <property name="dao" ref="vehicleDao"/>
     </bean>
-    <bean id="vehicleMaintenanceManager" class="org.appfuse.service.impl.GenericManagerImpl">
-        <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
-                <constructor-arg value="org.dlw.model.vehicle.VehicleMaintenance"/>
-            </bean>
-        </constructor-arg>
-    </bean>
-    -->
-    <bean id="vehicleDao" class="org.dlw.dao.impl.VehicleDao" scope="prototype">
+
+    <bean id="vehicleDao" class="org.dlw.dao.hibernate.VehicleDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -93,8 +94,5 @@
     </bean>
     <bean id="vehicleAction" class="org.dlw.action.vehicle.VehicleAction" scope="prototype">
         <property name="vehicleManager" ref="vehicleManager"/>
-    </bean>
-    <bean id="vehicleMaintenanceAction" class="org.dlw.action.vehicle.VehicleMaintenanceAction" scope="prototype">
-        <property name="vehicleMaintenanceManager" ref="vehicleMaintenanceManager"/>
     </bean>
 </beans>
