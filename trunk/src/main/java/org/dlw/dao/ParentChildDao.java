@@ -15,7 +15,7 @@ import java.util.List;
  * @author David L Whitehurst
  * Created from similar class written by Bryan Knoll
  */
-public interface ParentChildDao <T, PK extends Serializable> {
+public interface ParentChildDao <T, CT, PK extends Serializable> {
 
     /**
      * Generic method used to get all objects of a particular type. This
@@ -29,7 +29,7 @@ public interface ParentChildDao <T, PK extends Serializable> {
      * to this parent.
      * @return List of populated child objects
      */
-    public List<VehicleMaintenance> getAllChildren(PK id);
+    public List<CT> getAllChildren(PK id);
 
     /**
      * Generic method to get an object based on class and identifier. An

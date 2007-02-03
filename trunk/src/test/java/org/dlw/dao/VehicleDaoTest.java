@@ -1,12 +1,11 @@
 package org.dlw.dao;
 
 import org.appfuse.dao.BaseDaoTestCase;
-import org.dlw.dao.impl.VehicleDao;
 import org.dlw.model.vehicle.Vehicle;
 import org.dlw.model.vehicle.VehicleMaintenance;
-import org.springframework.orm.ObjectRetrievalFailureException;
 
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * <p> This program is open software. It is licensed using the Apache Software
@@ -19,15 +18,15 @@ import java.util.List;
  */
 public class VehicleDaoTest extends BaseDaoTestCase {
 
-    private Long vehicleId = new Long("2");
-    private VehicleDao vehicleDao = null;
+    private Long vehicleId = new Long("1");
+    private VehicleDao<Vehicle, Long> vehicleDao = null;
 
-    public void setVehicleDao(VehicleDao vehicleDao) {
+    public void setVehicleDao(VehicleDao<Vehicle, Long> vehicleDao) {
         this.vehicleDao = vehicleDao;
     }
 
     public void testAddVehicle() throws Exception {
-        log.info("Testing testAddVehicle");
+        System.out.println("Test: AddVehicle");
         Vehicle vehicle = new Vehicle();
 
         // set required fields
@@ -45,6 +44,15 @@ public class VehicleDaoTest extends BaseDaoTestCase {
 
         // verify set fields are same after save
     }
+    public void testGetChildren() throws Exception {
+        System.out.println("Test: GetChildren");
+        List list = vehicleDao.getAllChildren(vehicleId);
+        for (Iterator iter = list.iterator(); iter.hasNext();) {
+            VehicleMaintenance vehicleMaintenance = (VehicleMaintenance) iter.next();
+            System.out.println("Dao GetChildrenTest: " + vehicleMaintenance.getName());
+        }
+    }
+/*
 
     public void testGetVehicle() throws Exception {
         Vehicle vehicle = vehicleDao.get(vehicleId);
@@ -86,7 +94,6 @@ public class VehicleDaoTest extends BaseDaoTestCase {
         vehicleDao.save(vehicle);
 
     }
-
     public void testRemoveVehicle() throws Exception {
         Long removeId = new Long("1");
         vehicleDao.remove(removeId);
@@ -97,5 +104,5 @@ public class VehicleDaoTest extends BaseDaoTestCase {
             assertNotNull(e.getMessage());
         }
     }
-
+*/
 }

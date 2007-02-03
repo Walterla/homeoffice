@@ -30,12 +30,14 @@
 </s:form>
 
 <script type="text/javascript">
-    Form.focusFirstElement('vehicle');
+    Form.focusFirstElement('contact');
 </script>
+
 <div style="margin-top: 50px">
     <s:action name="vehicle!list" id="action" namespace="default"/>
     <display:table name="action.vehicles" id="row" cellspacing="0" cellpadding="0"
         defaultsort="1" class="table" pagesize="50" requestURI="">
+
         <%-- Table columns --%>
         <display:column titleKey="vehicle.description" sortable="true">
             <s:a href="vehicle.html?id=${row.id}"><c:out value="${row.year} ${row.make} ${row.model}" escapeXml="true"/></s:a>
@@ -43,20 +45,6 @@
 
         <display:setProperty name="paging.banner.item_name" value="vehicle" />
         <display:setProperty name="paging.banner.items_name" value="vehicles" />
-    </display:table>
-</div>
-<div style="margin-top: 50px">
-    <s:action name="vehicle!listChildren" id="action2" namespace="default"/>
-    <display:table name="action2.vehicleMaintenances" id="row2" cellspacing="0" cellpadding="0"
-        defaultsort="1" class="table" pagesize="50" requestURI="">
-
-        <%-- Table columns --%>
-        <display:column titleKey="vehicleMaintenance.description" sortable="true">
-            <s:a href="vehicle.html?id=${row2.id}"><c:out value="${row2.name}" escapeXml="true"/></s:a>
-        </display:column>
-
-        <display:setProperty name="paging.banner.item_name" value="vehicleMaintenance" />
-        <display:setProperty name="paging.banner.items_name" value="vehicleMaintenances" />
     </display:table>
 </div>
 
