@@ -3,9 +3,12 @@ package org.dlw.action.vehicle;
 import org.appfuse.webapp.action.BaseAction;
 import org.appfuse.service.GenericManager;
 import org.dlw.model.vehicle.VehicleMaintenance;
+import org.dlw.service.VehicleMaintenanceManager;
 
 import java.util.List;
 import java.text.MessageFormat;
+
+import com.opensymphony.xwork2.Preparable;
 
 /**
  * <p> This program is open software. It is licensed using the Apache Software
@@ -16,17 +19,18 @@ import java.text.MessageFormat;
  *
  * @author David L Whitehurst
  */
-public class VehicleMaintenanceAction extends BaseAction {
-    GenericManager<VehicleMaintenance, Long> manager;
+public class VehicleMaintenanceAction extends BaseAction implements Preparable {
+    //GenericManager<VehicleMaintenance, Long> manager;
+    VehicleMaintenanceManager vehicleMaintenanceManager;
     VehicleMaintenance vehicleMaintenance;
-    Long id;
+    String id;
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public void setVehicleMaintenanceManager(GenericManager<VehicleMaintenance, Long> genericManager) {
-        this.manager = genericManager;
+    public void setVehicleMaintenanceManager(VehicleMaintenanceManager vehicleMaintenanceManager) {
+        this.vehicleMaintenanceManager = vehicleMaintenanceManager;
     }
 
     public VehicleMaintenance getVehicleMaintenance() {
@@ -39,13 +43,13 @@ public class VehicleMaintenanceAction extends BaseAction {
 
     public String execute() {
         if (id != null) {
-            vehicleMaintenance = manager.get(id);
+            vehicleMaintenance = vehicleMaintenanceManager.getVehicleMaintenance(id);
         }
         return "success";
     }
 
     public String save() {
-        manager.save(vehicleMaintenance);
+        vehicleMaintenanceManager.saveVehicleMaintenance(vehicleMaintenance);
         super.saveMessage("VehicleMaintenance updated successfully!");
         return "form";
     }
@@ -57,16 +61,24 @@ public class VehicleMaintenanceAction extends BaseAction {
     }
 
     public String list() {
-        vehicleMaintenances = manager.getAll();
+        vehicleMaintenances = vehicleMaintenanceManager.getVehicleMaintenances();
         return SUCCESS;
     }
 
     public String delete() {
-        manager.remove(vehicleMaintenance.getId());
+        vehicleMaintenanceManager.removeVehicleMaintenance(vehicleMaintenance.getId());
         saveMessage(MessageFormat.format("{0} removed successfully.",
                 vehicleMaintenance.getName()));
         return "form";
     }
 
 
+    public void prepare() throws Exception {
+        if (getRequest().getMethod().equalsIgnoreCase("post")) {
+            if (!"".equals(getRequest().getParameter("vehicleMaintenance.id"))) {
+                // prevent failures on new
+                vehicleMaintenance = vehicleMaintenanceManager.getVehicleMaintenance(getRequest().getParameter("vehicleMaintenance.id"));
+            }
+        }
+    }
 }

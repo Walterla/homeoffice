@@ -52,7 +52,7 @@
 
         <%-- Table columns --%>
         <display:column titleKey="vehicleMaintenance.description" sortable="true">
-            <s:a href="vehicle.html?id=${row2.id}"><c:out value="${row2.name}" escapeXml="true"/></s:a>
+            <s:a href="vehicleMaintenance.html?id=${row2.id}"><c:out value="${row2.name}" escapeXml="true"/></s:a>
         </display:column>
 
         <display:setProperty name="paging.banner.item_name" value="vehicleMaintenance" />

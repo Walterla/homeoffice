@@ -14,7 +14,7 @@ import java.util.Date;
     Date startDate;
     Date endDate;
 
-    @ManyToOne
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     public Vehicle getVehicle() {
         return vehicle;
     }
