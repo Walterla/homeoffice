@@ -81,6 +81,13 @@
     <bean id="vehicleDao" class="org.dlw.dao.hibernate.VehicleDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="vehicleMaintenanceManager" class="org.dlw.service.impl.VehicleMaintenanceManagerImpl">
+        <property name="dao" ref="vehicleMaintenanceDao"/>
+    </bean>
+
+    <bean id="vehicleMaintenanceDao" class="org.dlw.dao.hibernate.VehicleMaintenanceDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
     <!-- struts action registration -->
     <bean id="contactAction" class="org.dlw.action.ContactAction" scope="prototype">
@@ -94,5 +101,8 @@
     </bean>
     <bean id="vehicleAction" class="org.dlw.action.vehicle.VehicleAction" scope="prototype">
         <property name="vehicleManager" ref="vehicleManager"/>
+    </bean>
+    <bean id="vehicleMaintenanceAction" class="org.dlw.action.vehicle.VehicleMaintenanceAction" scope="prototype">
+        <property name="vehicleMaintenanceManager" ref="vehicleMaintenanceManager"/>
     </bean>
 </beans>

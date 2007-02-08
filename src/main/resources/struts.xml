@@ -137,11 +137,9 @@
             <result>/WEB-INF/pages/vehicle/vehicle.jsp</result>
             <result name="form" type="redirect">vehicle.html</result>
         </action>
-<!--
         <action name="vehicleMaintenance" class="vehicleMaintenanceAction">
             <result>/WEB-INF/pages/vehicle/vehicleMaintenance.jsp</result>
             <result name="form" type="redirect">vehicleMaintenance.html</result>
         </action>
-        -->
       </package>
 </struts>

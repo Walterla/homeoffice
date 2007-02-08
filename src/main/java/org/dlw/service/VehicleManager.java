@@ -1,7 +1,6 @@
 package org.dlw.service;
 
 import org.dlw.dao.VehicleDao;
-import org.dlw.dao.hibernate.VehicleDaoHibernate;
 import org.dlw.model.vehicle.Vehicle;
 
 import java.util.List;
