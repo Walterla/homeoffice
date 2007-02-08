@@ -1,4 +1,4 @@
-#summary The HomeOffice project is being used to document an AppFuse quickstart.
+#summary The HomeOffice project is being used to document an AppFuse quickstart. The code is also used as a testbed for an example application used in a book called AppFuse Primer.
 
 = Introduction =
 
