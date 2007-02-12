@@ -13,4 +13,7 @@
     <span class="right">
         &copy; 2006 <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
     </span>
+    <span class="center">
+	<img src="images/appfuse3.gif"/>
+    </span>
     <!-- Built on @BUILD-TIME@ -->

@@ -8,7 +8,7 @@
             <Item name="CRUDContacts" title="Contacts" page="/contact.html"/>
             <Item name="CRUDBusinesses" title="Businesses" page="/business.html"/>
         </Menu>
-        <Menu name="VehicleMenu" title="VehicleMenu.title">
+        <Menu name="VehicleMenu" title="VehicleMenu.title" roles="user">
             <Item name="CRUDVehicles" title="Vehicles" page="/vehicle.html"/>
             <Item name="CRUDVehicleMaintenance" title="Maintenance" page="/vehicleMaintenance.html"/>
         </Menu>

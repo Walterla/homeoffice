@@ -384,6 +384,12 @@ input.button, button {
     padding: 2px 2px 0 0; /* fix for IE */
 }
 
+input.button, buttonright {
+    width: 6em;
+    padding: 2px 2px 0 0; /* fix for IE */
+    vertical-align: middle;
+}
+
 /* revert to normal for Firefox */
 li>input.button, li>button, input.button>input.button, button>button {
     padding: 2px;
