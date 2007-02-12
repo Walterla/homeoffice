@@ -16,18 +16,23 @@
     <s:textfield label="Name" name="vehicleMaintenance.name"
                  value="%{vehicleMaintenance.name}" required="true" cssClass="text medium"/>
 
-    <s:textfield label="AlarmDate" name="vehicleMaintenance.alarmDate" id="alarmDate"
-                 value="%{vehicleMaintenance.alarmDate}" required="true" cssClass="text medium"/>
-    <button id="alarmCal" type="button" class="button">...</button>
 
-    <s:textfield label="StartDate" name="vehicleMaintenance.startDate" id="startDate"
+    <table>
+    <tr><td><s:textfield label="AlarmDate " name="vehicleMaintenance.alarmDate" id="alarmDate"
+                 value="%{vehicleMaintenance.alarmDate}" required="true" cssClass="text medium" /></td>
+    <td><img src="images/calendar1.gif" alt="calendar" id="alarmCal"/></td>
+    </tr>
+
+    <tr><td><s:textfield label="StartDate" name="vehicleMaintenance.startDate" id="startDate"
                  value="%{vehicleMaintenance.startDate}" required="false" cssClass="text medium"/>
-    <button id="startCal" type="button" class="button">...</button>
+    <td><img src="images/calendar1.gif" alt="calendar" id="startCal"/></td>
+    </tr>
 
-    <s:textfield label="EndDate" name="vehicleMaintenance.endDate" id="endDate"
+    <tr><td><s:textfield label="EndDate" name="vehicleMaintenance.endDate" id="endDate"
                  value="%{vehicleMaintenance.endDate}" required="false" cssClass="text medium"/>
-    <button id="endCal" type="button" class="button">...</button>
-
+    <td><img src="images/calendar1.gif" alt="calendar" id="endCal"/></td>    
+    </tr>
+    </table>
     <p></p>
     <p></p>
 
