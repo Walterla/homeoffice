@@ -154,4 +154,50 @@
           <value>1</value>
         </row>
     </table>
+
+    <table name='account'>
+      <column>id</column>
+      <column>accountname</column>
+      <column>accountnumber</column>
+      <column>optionalnumber</column>
+      <column>balance</column>
+      <column>budgetbilling</column>
+      <column>regularpayment</column>
+      <column>duedate</column>
+      <row>
+        <value>1</value>
+        <value>ABCs for Success</value>
+        <value>123</value>
+        <value>456</value>
+        <value><![CDATA[1000.00]]></value>
+        <value><![CDATA[100.00]]></value>
+        <value><![CDATA[200.00]]></value>
+        <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+      </row>
+    </table>
+    <table name="accountdetail">
+        <column>id</column>
+        <column>sequencenumber</column>
+        <column>amount</column>
+        <column>transactiondate</column>
+        <column>description</column>
+        <column>account_id</column>
+        <row>
+          <value>1</value>
+          <value>101</value>
+          <value><![CDATA[100.00]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[Regular Payment]]></value>
+          <value>1</value>
+        </row>
+        <row>
+          <value>2</value>
+          <value>102</value>
+          <value><![CDATA[100.00]]></value>
+          <value><![CDATA[1960-06-01 00:00:00.0]]></value>
+          <value><![CDATA[Regular Payment]]></value>
+          <value>1</value>
+        </row>
+    </table>
+
 </dataset>
