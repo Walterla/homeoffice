@@ -46,6 +46,7 @@
                 <value>org.dlw.model.Contact</value>
                 <value>org.dlw.model.Business</value>
                 <value>org.dlw.model.account.Account</value>
+                <value>org.dlw.model.account.AccountDetail</value>
                 <value>org.dlw.model.vehicle.Vehicle</value>
                 <value>org.dlw.model.vehicle.VehicleMaintenance</value>
             </list>
@@ -67,6 +68,7 @@
             </bean>
         </constructor-arg>
     </bean>
+<!--
     <bean id="accountManager" class="org.appfuse.service.impl.GenericManagerImpl">
         <constructor-arg>
             <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
@@ -74,6 +76,7 @@
             </bean>
         </constructor-arg>
     </bean>
+-->
     <bean id="vehicleManager" class="org.dlw.service.impl.VehicleManagerImpl">
         <property name="dao" ref="vehicleDao"/>
     </bean>
@@ -96,9 +99,11 @@
     <bean id="businessAction" class="org.dlw.action.BusinessAction" scope="prototype">
         <property name="businessManager" ref="businessManager"/>
     </bean>
+<!--
     <bean id="accountAction" class="org.dlw.action.account.AccountAction" scope="prototype">
         <property name="accountManager" ref="accountManager"/>
     </bean>
+-->
     <bean id="vehicleAction" class="org.dlw.action.vehicle.VehicleAction" scope="prototype">
         <property name="vehicleManager" ref="vehicleManager"/>
     </bean>

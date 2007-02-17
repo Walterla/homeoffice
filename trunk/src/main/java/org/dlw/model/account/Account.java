@@ -1,11 +1,9 @@
 package org.dlw.model.account;
 
 import org.appfuse.model.BaseObject;
+import org.dlw.model.vehicle.VehicleMaintenance;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -23,8 +21,6 @@ import java.util.*;
 public class Account extends BaseObject implements Serializable {
     protected Long id;
 
-//    protected Long accountType;
-
     protected String accountName;
 
     protected String accountNumber;
@@ -39,9 +35,7 @@ public class Account extends BaseObject implements Serializable {
 
     protected Date dueDate;
 
-//    protected List accountDetails = new ArrayList();
-
-//    protected Set contacts = new HashSet();
+    List<AccountDetail> accountDetails = new ArrayList<AccountDetail>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,15 +46,7 @@ public class Account extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-/*
-    public Long getAccountType() {
-        return accountType;                                       
-    }
 
-    public void setAccountType(Long accountType) {
-        this.accountType = accountType;
-    }
-*/
     public String getAccountName() {
         return accountName;
     }
@@ -68,7 +54,7 @@ public class Account extends BaseObject implements Serializable {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
-
+                                                                                                           
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -116,23 +102,17 @@ public class Account extends BaseObject implements Serializable {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-/*
-    public List getAccountDetails() {
+
+    @OneToMany(mappedBy="account")
+    @OrderBy("sequenceNumber")
+    public List<AccountDetail> getAccountDetails() {
         return accountDetails;
     }
 
-    public void setAccountDetails(List accountDetails) {
+    public void setAccountDetails(List<AccountDetail> accountDetails) {
         this.accountDetails = accountDetails;
     }
 
-    public Set getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Set contacts) {
-        this.contacts = contacts;
-    }
-*/
     public String toString() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
