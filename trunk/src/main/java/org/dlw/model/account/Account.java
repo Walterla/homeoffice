@@ -19,21 +19,15 @@ import java.util.*;
  */
 @Entity
 public class Account extends BaseObject implements Serializable {
-    protected Long id;
 
-    protected String accountName;
-
-    protected String accountNumber;
-
-    protected String optionalNumber;
-
-    protected BigDecimal balance;
-
-    protected BigDecimal budgetBilling;
-
-    protected BigDecimal regularPayment;
-
-    protected Date dueDate;
+    Long id;
+    String accountName;
+    String accountNumber;
+    String optionalNumber;
+    BigDecimal balance;
+    BigDecimal budgetBilling;
+    BigDecimal regularPayment;
+    Date dueDate;
 
     List<AccountDetail> accountDetails = new ArrayList<AccountDetail>();
 

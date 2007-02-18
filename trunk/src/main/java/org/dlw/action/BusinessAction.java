@@ -1,5 +1,18 @@
 package org.dlw.action;
 
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import org.appfuse.webapp.action.BaseAction;
 import org.appfuse.service.GenericManager;
 import org.dlw.model.Business;
@@ -8,13 +21,11 @@ import java.util.List;
 import java.text.MessageFormat;
 
 /**
- * <p> This program is open software. It is licensed using the Apache Software
- * Foundation, version 2.0 January 2004
- * </p>
- * <a
- * href="mailto:dlwhitehurst@gmail.com">dlwhitehurst@gmail.com</a>
+ * This class implements the Struts2 action for the Business object
  *
- * @author David L Whitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version $Id$
+ * @description Struts2 Action Class for Business
  */
 public class BusinessAction extends BaseAction {
     GenericManager<Business, Long> manager;

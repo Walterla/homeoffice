@@ -68,27 +68,32 @@
             </bean>
         </constructor-arg>
     </bean>
-<!--
-    <bean id="accountManager" class="org.appfuse.service.impl.GenericManagerImpl">
-        <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" autowire="byType">
-                <constructor-arg value="org.dlw.model.account.Account"/>
-            </bean>
-        </constructor-arg>
-    </bean>
--->
+
     <bean id="vehicleManager" class="org.dlw.service.impl.VehicleManagerImpl">
         <property name="dao" ref="vehicleDao"/>
     </bean>
-
     <bean id="vehicleDao" class="org.dlw.dao.hibernate.VehicleDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
     <bean id="vehicleMaintenanceManager" class="org.dlw.service.impl.VehicleMaintenanceManagerImpl">
         <property name="dao" ref="vehicleMaintenanceDao"/>
     </bean>
-
     <bean id="vehicleMaintenanceDao" class="org.dlw.dao.hibernate.VehicleMaintenanceDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="accountManager" class="org.dlw.service.impl.AccountManagerImpl">
+        <property name="dao" ref="accountDao"/>
+    </bean>
+    <bean id="accountDao" class="org.dlw.dao.hibernate.AccountDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="accountDetailManager" class="org.dlw.service.impl.AccountDetailManagerImpl">
+        <property name="dao" ref="accountDetailDao"/>
+    </bean>
+    <bean id="accountDetailDao" class="org.dlw.dao.hibernate.AccountDetailDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -99,15 +104,17 @@
     <bean id="businessAction" class="org.dlw.action.BusinessAction" scope="prototype">
         <property name="businessManager" ref="businessManager"/>
     </bean>
-<!--
-    <bean id="accountAction" class="org.dlw.action.account.AccountAction" scope="prototype">
-        <property name="accountManager" ref="accountManager"/>
-    </bean>
--->
     <bean id="vehicleAction" class="org.dlw.action.vehicle.VehicleAction" scope="prototype">
         <property name="vehicleManager" ref="vehicleManager"/>
     </bean>
     <bean id="vehicleMaintenanceAction" class="org.dlw.action.vehicle.VehicleMaintenanceAction" scope="prototype">
         <property name="vehicleMaintenanceManager" ref="vehicleMaintenanceManager"/>
     </bean>
+    <bean id="accountAction" class="org.dlw.action.account.AccountAction" scope="prototype">
+        <property name="accountManager" ref="accountManager"/>
+    </bean>
+    <bean id="accountDetailAction" class="org.dlw.action.account.AccountDetailAction" scope="prototype">
+        <property name="accountDetailManager" ref="accountDetailManager"/>
+    </bean>
+
 </beans>

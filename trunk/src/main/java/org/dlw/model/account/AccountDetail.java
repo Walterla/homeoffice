@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Entity
 public class AccountDetail extends BaseObject implements Serializable {
 
-    protected Long id;
-    protected Long sequenceNumber;
-    protected BigDecimal amount;
-    protected Date transactionDate;
-    protected String Description;
-    protected Account account;
+    Long id;
+    Long sequenceNumber;
+    BigDecimal amount;
+    Date transactionDate;
+    String description;
+    Account account;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,11 +61,11 @@ public class AccountDetail extends BaseObject implements Serializable {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
     public String toString() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.

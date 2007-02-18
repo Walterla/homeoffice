@@ -13,12 +13,12 @@ public class VehicleManagerImpl implements VehicleManager {
         this.dao = vehicleDao;
     }
 
-    public List getVehicleMaintenances(final Long id) {
-        return dao.getAllChildren(id);
+    public List getVehicleMaintenances(String id) {
+        return dao.getAllChildren(new Long(id));
     }
 
-    public Vehicle getVehicle(final Long id) {
-        return (Vehicle) dao.get(id);
+    public Vehicle getVehicle(String id) {
+        return (Vehicle) dao.get(new Long(id));
     }
 
     public List getVehicles() {
@@ -29,7 +29,7 @@ public class VehicleManagerImpl implements VehicleManager {
         dao.save(vehicle);
     }
 
-    public void removeVehicle(Long id) {
-        dao.remove(id);
+    public void removeVehicle(String id) {
+        dao.remove(new Long(id));
     }
 }

@@ -32,7 +32,7 @@ public class VehicleManagerTest extends MockObjectTestCase {
         vehicle = new Vehicle();
 
         dao.expects(once()).method("get").with(eq(id)).will(returnValue(vehicle));
-        Vehicle result = manager.getVehicle(id);
+        Vehicle result = manager.getVehicle(id.toString());
         assertSame(vehicle, result);
         dao.verify();
 
@@ -58,7 +58,7 @@ public class VehicleManagerTest extends MockObjectTestCase {
 
         dao.expects(once()).method("getAllChildren").will(returnValue(vehicleMaintenances));
 
-        List result = manager.getVehicleMaintenances(new Long("1"));
+        List result = manager.getVehicleMaintenances("1");
         assertSame(vehicleMaintenances, result);
         dao.verify();
     }
@@ -83,7 +83,7 @@ public class VehicleManagerTest extends MockObjectTestCase {
 
         dao.expects(once()).method("remove").with(eq(id)).isVoid();
 
-        manager.removeVehicle(id);
+        manager.removeVehicle(id.toString());
         dao.verify();
 
 

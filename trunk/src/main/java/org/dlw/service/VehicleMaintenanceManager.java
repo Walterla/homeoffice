@@ -16,7 +16,7 @@ public interface VehicleMaintenanceManager {
 
     public void saveVehicleMaintenance(VehicleMaintenance vehicleMaintenance);
 
-    public void removeVehicleMaintenance(Long id);
+    public void removeVehicleMaintenance(String id);
 
     public Vehicle getVehicle(String id);
 

@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp" %>
 
-<title>Vehicle Form Example</title>
+<title>Vehicle</title>
 
 <p>Please use the form below to modify a Vehicle's information.</p>
 
@@ -32,6 +32,7 @@
 <script type="text/javascript">
     Form.focusFirstElement('vehicle');
 </script>
+
 <div style="margin-top: 50px">
     <s:action name="vehicle!list" id="action" namespace="default"/>
     <display:table name="action.vehicles" id="row" cellspacing="0" cellpadding="0"

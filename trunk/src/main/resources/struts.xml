@@ -129,10 +129,7 @@
             <result>/WEB-INF/pages/business.jsp</result>
             <result name="form" type="redirect">business.html</result>
         </action>
-        <action name="account" class="accountAction">
-            <result>/WEB-INF/pages/account/account.jsp</result>
-            <result name="form" type="redirect">account.html</result>
-        </action>
+        
         <action name="vehicle" class="vehicleAction">
             <result>/WEB-INF/pages/vehicle/vehicle.jsp</result>
             <result name="form" type="redirect">vehicle.html</result>
@@ -141,5 +138,14 @@
             <result>/WEB-INF/pages/vehicle/vehicleMaintenance.jsp</result>
             <result name="form" type="redirect">vehicleMaintenance.html</result>
         </action>
+        <action name="account" class="accountAction">
+            <result>/WEB-INF/pages/account/account.jsp</result>
+            <result name="form" type="redirect">account.html</result>
+        </action>
+        <action name="accountDetail" class="accountDetailAction">
+            <result>/WEB-INF/pages/account/accountDetail.jsp</result>
+            <result name="form" type="redirect">accountDetail.html</result>
+        </action>
+
       </package>
 </struts>
