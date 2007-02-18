@@ -1,7 +1,7 @@
 package org.dlw.dao;
 
 import org.appfuse.dao.GenericDao;
-import org.dlw.model.vehicle.Vehicle;
+import org.dlw.model.account.Account;
 
 /**
  * <p> This program is open software. It is licensed using the Apache Software
@@ -12,8 +12,7 @@ import org.dlw.model.vehicle.Vehicle;
  *
  * @author David L Whitehurst
  */
-public interface VehicleMaintenanceDao<T, PK extends java.io.Serializable> extends GenericDao {
-
-    public Vehicle getVehicle(Long id);
-
+public interface AccountDetailDao <T, PK extends java.io.Serializable> extends GenericDao {
+    
+    public Account getAccount(Long id);
 }

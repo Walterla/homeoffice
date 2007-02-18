@@ -27,8 +27,8 @@ public class VehicleMaintenanceManagerImpl implements VehicleMaintenanceManager 
         dao.save(vehicleMaintenance);
     }
 
-    public void removeVehicleMaintenance(Long id) {
-        dao.remove(id);
+    public void removeVehicleMaintenance(String id) {
+        dao.remove(new Long(id));
     }
 
     public Vehicle getVehicle(String id) {

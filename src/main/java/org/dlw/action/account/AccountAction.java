@@ -1,35 +1,48 @@
 package org.dlw.action.account;
 
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import org.appfuse.webapp.action.BaseAction;
 import org.appfuse.service.GenericManager;
 import org.dlw.model.Business;
 import org.dlw.model.account.Account;
+import org.dlw.service.AccountManager;
 
 import java.util.List;
 import java.text.MessageFormat;
 
 /**
- * <p> This program is open software. It is licensed using the Apache Software
- * Foundation, version 2.0 January 2004
- * </p>
- * <a
- * href="mailto:dlwhitehurst@gmail.com">dlwhitehurst@gmail.com</a>
+ * This class implements the Struts2 action for the Account object
  *
- * @author David L Whitehurst
+ * @author <a href="mailto:dlwhitehurst@gmail.com">David L. Whitehurst</a>
+ * @version $Id$
+ * @description Struts2 Action Class for Account
  */
 public class AccountAction extends BaseAction {
-    GenericManager<Account, Long> manager;
+    private List accounts;
+    private List accountDetails;
+
+    AccountManager accountManager;
     Account account;
     Long id;
 
     public void setId(Long id) {
         this.id = id;
     }
-
-    public void setAccountManager(GenericManager<Account, Long> genericManager) {
-        this.manager = genericManager;
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
-
     public Account getAccount() {
         return account;
     }
@@ -38,32 +51,39 @@ public class AccountAction extends BaseAction {
         this.account = account;
     }
 
+    public List getAccounts() {
+        return this.accounts;
+    }
+
+    public List getAccountDetails() {
+        return accountDetails;
+    }
+
+    public String list() {
+        accounts = accountManager.getAccounts();
+        return SUCCESS;
+    }
+
+    public String listChildren() {
+        accountDetails = accountManager.getAccountDetails(account.getId().toString());
+        return SUCCESS;
+    }
+
     public String execute() {
         if (id != null) {
-            account = manager.get(id);
+            account = (Account) accountManager.getAccount(id.toString());
         }
         return "success";
     }
 
     public String save() {
-        manager.save(account);
+        accountManager.saveAccount(account);
         super.saveMessage("Account updated successfully!");
         return "form";
     }
 
-    private List accounts;
-
-    public List getAccounts() {
-        return this.accounts;
-    }
-
-    public String list() {
-        accounts = manager.getAll();
-        return SUCCESS;
-    }
-
     public String delete() {
-        manager.remove(account.getId());
+        accountManager.removeAccount(account.getId().toString());
         saveMessage(MessageFormat.format("{0} removed successfully.",
                 account.getAccountName()));
         return "form";

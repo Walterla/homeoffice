@@ -9,13 +9,13 @@ public interface VehicleManager {
 
     public void setDao(VehicleDao dao);
 
-    public List getVehicleMaintenances(Long id);
+    public List getVehicleMaintenances(String id);
 
-    public Vehicle getVehicle(Long id);
+    public Vehicle getVehicle(String id);
 
     public List getVehicles();
 
     public void saveVehicle(Vehicle vehicle);
 
-    public void removeVehicle(Long id);
+    public void removeVehicle(String id);
 }
